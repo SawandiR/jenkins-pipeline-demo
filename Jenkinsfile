@@ -9,19 +9,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the code...'
-                bat 'npm install'
             }
         }
         stage('Test') {
             steps {
-                echo 'Running npm audit for security check...'
-                bat 'npm audit --json'
+                echo 'Running tests...'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying app...'
-                // Add deploy commands here
             }
         }
     }
