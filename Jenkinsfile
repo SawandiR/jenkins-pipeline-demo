@@ -1,26 +1,24 @@
 pipeline {
-  agent any
-
-  stages {
-    stage('Build') {
-      steps {
-        echo 'Building the code...'
-      }
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the code...'
+                // Add any build commands here if needed
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running npm audit for security check...'
+                bat 'npm install'
+                bat 'npm audit --json'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+                // Add deploy commands here
+            }
+        }
     }
-
-   stage('Test') {
-  steps {
-    echo 'Running npm audit for security check...'
-    bat 'npm install'          // install dependencies
-    bat 'npm audit --json'     // run npm audit and output JSON (or just `npm audit` if you prefer)
-  }
-}
-
-
-    stage('Deploy') {
-      steps {
-        echo 'Deploying app...'
-      }
-    }
-  }
 }
